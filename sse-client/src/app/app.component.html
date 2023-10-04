@@ -1,0 +1,39 @@
+<h1>SSE Test</h1>
+
+<div>
+  <button type="button" (click)="connect()" [disabled]="conn">Connect</button>
+  <button type="button" (click)="disconnect()" [disabled]="!conn">Disconnect</button>
+</div>
+
+<form [formGroup]="form" (submit)="send()">
+  <table>
+    <tr>
+      <td>Username:</td>
+      <td>
+        <input type="text" size="20" formControlName="username">
+      </td>
+    </tr>
+    <tr>
+      <td>Text:</td>
+      <td>
+        <textarea cols="30" rows="3" formControlName="text"></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>
+        <button type="submit" [disabled]="form.invalid">Send</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+<div *ngIf="messages.length > 0; else noMessages">
+  <div *ngFor="let m of messages">
+    <code>{{ m }}</code>
+  </div>
+</div>
+
+<ng-template #noMessages>
+  <h2>No Messages</h2>
+</ng-template>
